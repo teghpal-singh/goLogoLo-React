@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 
 class TextEditSidebar extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         // WE'LL MANAGE THE UI CONTROL
         // VALUES HERE
         this.state = {
-            textColor : "#FF0000",
-            fontSize : 24
+            textColor : this.props.logo.textColor,
+            fontSize : this.props.logo.fontSize,
         }
     }
 
@@ -30,6 +30,16 @@ class TextEditSidebar extends Component {
         console.log("completeUserEditing");
         console.log("this.state.textColor: " + this.state.textColor);
         this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.props.logo.text, this.state.textColor, this.state.fontSize);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props !== prevProps) {
+            console.log("Updating Component!");
+            this.setState({
+                textColor: this.props.logo.textColor,
+                fontSize: this.props.logo.fontSize,
+            })
+        }
     }
 
     render() {
