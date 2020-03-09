@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Modal, Button, Textarea } from 'react-materialize';
 
 class TextEditSidebar extends Component {
     constructor(props) {
@@ -9,6 +10,8 @@ class TextEditSidebar extends Component {
         this.state = {
             textColor : this.props.logo.textColor,
             fontSize : this.props.logo.fontSize,
+            text : this.props.logo.text,
+            error: false,
         }
     }
 
@@ -33,7 +36,8 @@ class TextEditSidebar extends Component {
     completeUserEditing = () => {
         console.log("completeUserEditing");
         console.log("this.state.textColor: " + this.state.textColor);
-        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.props.logo.text, this.state.textColor, this.state.fontSize);
+        console.log(this.state.text);
+        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor, this.state.fontSize);
     }
 
     componentDidUpdate(prevProps) {
@@ -42,7 +46,20 @@ class TextEditSidebar extends Component {
             this.setState({
                 textColor: this.props.logo.textColor,
                 fontSize: this.props.logo.fontSize,
+                text: this.props.logo.text,
             })
+        }
+    }
+
+    changeText = (event) => {
+        console.log("BYE WORLD!");
+        if (event.target.value == "") {
+            this.setState({error : true});
+            console.log("HELLO WORLD!");
+            console.log(this.state.error);
+        }
+        else if (this.state.error == false) {
+            this.completeUserEditing();
         }
     }
 
@@ -59,7 +76,17 @@ class TextEditSidebar extends Component {
             <div className="card-panel col s4">
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
-                        <button className="waves-effect waves-light btn-small">&#9998;</button>
+                        <Modal trigger={<button className="waves-effect waves-light btn-small">&#9998;</button>}>
+                        <h5>Please input what you want your text for this logo to be:</h5>
+                        <Textarea type='text' onChange={this.changeText}></Textarea>
+                        <Button type="button" modal="close" className="btn btn-primary" onClick={this.changeText}>Submit</Button>
+                        </Modal>
+                        {this.state.error ? (
+                            <Modal open = {true}>
+                                <h5>Invalid Logo Name: Must be at least one character long.</h5>
+                            </Modal>
+                        ) : null}
+                        {/*<button className="waves-effect waves-light btn-small">&#9998;</button>*/}
                         <button className={undoClass} onClick={this.handleUndo}>Undo</button>
                         <button className={redoClass} onClick={this.handleRedo}>Redo</button>
                     </div>
