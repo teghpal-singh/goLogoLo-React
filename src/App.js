@@ -174,6 +174,15 @@ class App extends Component {
   }
 
   /**
+   * redo - This callback function lets the EditScreen redo
+   * the latest transaction, whatever that may be. Note that
+   * if there is no transaction to redo it will do nothing.
+   */
+  redo = () => {
+    this.tps.doTransaction();
+  }
+
+  /**
    * resetTransactions - This method clears all the transactions in
    * the undo/redo stack, which should be done every time the logo
    * being edited changes.
@@ -189,6 +198,15 @@ class App extends Component {
    */
   canUndo = () => {
     return this.tps.hasTransactionToUndo();
+  }
+
+  /**
+   * canRedo - This method lets the user interface know if there are
+   * any redoable transactions in the transactions stack so that it
+   * can choose to enable or disable the redo button.
+   */
+  canRedo = () => {
+    return this.tps.hasTransactionToRedo();
   }
 
   // THERE ARE SEVEN FUNCTIONS FOR UPDATING THE App state, TWO OF
@@ -346,7 +364,8 @@ class App extends Component {
           changeLogoCallback={this.buildChangeLogoTransaction}  // TRANSACTION CALLBACK
           undoCallback={this.undo}                        // TRANSACTION CALLBACK                       
           canUndo={this.canUndo}                          // TRANSACTION CALLBACK
-
+          redoCallback={this.redo}  
+          canRedo={this.canRedo} 
         />;
       default:
         return <div></div>;

@@ -16,6 +16,10 @@ class TextEditSidebar extends Component {
         this.props.undoCallback();
     }
 
+    handleRedo = () => {
+        this.props.redoCallback();
+    }
+
     handleTextColorChange = (event) => {
         console.log("handleTextColorChange to " + event.target.value);
         this.setState({ textColor: event.target.value }, this.completeUserEditing);
@@ -45,6 +49,10 @@ class TextEditSidebar extends Component {
     render() {
         let undoDisabled = !this.props.canUndo();
         let undoClass = "waves-effect waves-light btn-small";
+        let redoDisabled = !this.props.canRedo();
+        let redoClass = "waves-effect waves-light btn-small";
+        if (redoDisabled)
+            redoClass += " disabled";
         if (undoDisabled)
             undoClass += " disabled";
         return (
@@ -53,6 +61,7 @@ class TextEditSidebar extends Component {
                     <div className="card-content white-text">
                         <button className="waves-effect waves-light btn-small">&#9998;</button>
                         <button className={undoClass} onClick={this.handleUndo}>Undo</button>
+                        <button className={redoClass} onClick={this.handleRedo}>Redo</button>
                     </div>
                 </div>
                 <div className="card blue-grey darken-1">
