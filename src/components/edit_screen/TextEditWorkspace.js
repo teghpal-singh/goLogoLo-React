@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-// THIS IS HOW WE DISPLAY THE LOGO, IN THIS COMPONENT
+// THIS IS HOW WE DISPLAY THE LOGO, IN THIS COMPONENT ASasAS
 class TextEditWorkspace extends Component {
     render() {
         const styles = {
