@@ -40,6 +40,11 @@ class TextEditSidebar extends Component {
         this.setState({ backgroundColor: event.target.value }, this.completeUserEditing);
     }
 
+    handleBorderThicknessChange = (event) => {
+        console.log("handleBorderThicknessChangeComplete to " + event.target.value);
+        this.setState({ borderThickness: event.target.value }, this.completeUserEditing);
+    }
+
     handleBorderColorChange = (event) => {
         console.log("handleBorderColorChange to " + event.target.value);
         this.setState({ borderColor: event.target.value }, this.completeUserEditing);
@@ -49,7 +54,7 @@ class TextEditSidebar extends Component {
         console.log("completeUserEditing");
         console.log("this.state.textColor: " + this.state.textColor);
         console.log(this.state.text);
-        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor, this.state.fontSize, this.state.backgroundColor, this.state.borderColor);
+        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor, this.state.fontSize, this.state.backgroundColor, this.state.borderThickness, this.state.borderColor);
     }
 
     componentDidUpdate(prevProps) {
@@ -60,19 +65,29 @@ class TextEditSidebar extends Component {
                 fontSize: this.props.logo.fontSize,
                 text: this.props.logo.text,
                 backgroundColor: this.props.logo.backgroundColor,
+                borderThickness: this.props.logo.borderThickness,
                 borderColor: this.props.logo.borderColor,
             })
         }
     }
 
     changeText = (event) => {
-        console.log("BYE WORLD!");
-        if (event.target.value == "") {
+        console.log(event.target.value)
+        this.setState({
+            text: event.target.value,
+        });
+        this.setState({error : false});
+    }
+
+    updateText = () => {
+        if (this.state.text === "") {
             this.setState({error : true});
+            console.log(this.props.logo.text)
+            this.setState({text: this.props.logo.text})
             console.log("HELLO WORLD!");
             console.log(this.state.error);
         }
-        else if (this.state.error == false) {
+        else if (this.state.error === false) {
             this.completeUserEditing();
         }
     }
@@ -93,7 +108,7 @@ class TextEditSidebar extends Component {
                         <Modal trigger={<button className="waves-effect waves-light btn-small">&#9998;</button>}>
                         <h5>Please input what you want your text for this logo to be:</h5>
                         <Textarea type='text' onChange={this.changeText}></Textarea>
-                        <Button type="button" modal="close" className="btn btn-primary" onClick={this.changeText}>Submit</Button>
+                        <Button type="button" modal="close" className="btn btn-primary" onClick={this.updateText}>Submit</Button>
                         </Modal>
                         {this.state.error ? (
                             <Modal open = {true}>
@@ -132,6 +147,14 @@ class TextEditSidebar extends Component {
                                         onChange={this.handleBackgroundColorChange}
                                         value={this.props.logo.backgroundColor}
                                 />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Border Thickness:</div>
+                            <div className="col s8">
+                                <input type="range" min="4" max="144" 
+                                    onChange={this.handleBorderThicknessChange}
+                                    value={this.props.logo.borderThickness} />
                             </div>
                         </div>
                         <div className="row">
