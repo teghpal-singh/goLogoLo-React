@@ -24,7 +24,7 @@ export const LogoDefaults = {
   TEXT : "goLogoLo Logo",
   TEXT_COLOR : "#FF0000",
   FONT_SIZE : 24,
-  BORDER_THICKNESS: 4
+  BORDER_WIDTH: 4
 }
 
 // App IS THE ROOT REACT COMPONENT
@@ -146,7 +146,7 @@ class App extends Component {
    * to do the actual work of changing the logo. Note that this function will also
    * then add the built transaction to the stack and execute it.
    */
-  buildChangeLogoTransaction = (oldLogo, logoKey, newText, newTextColor, newFontSize, newBackgroundColor, newBorderThickness, newBorderColor) => {
+  buildChangeLogoTransaction = (oldLogo, logoKey, newText, newTextColor, newFontSize, newBackgroundColor, newBorderWidth, newBorderColor) => {
     // THIS WILL BE THE LOGO AFTER THE CHANGE HAPPENS, NOTE WE BUILD
     // AN ENTIRELY NEW LOGO EACH TIME BUT IT SHOULD KEEP THE SAME KEY
     let postEditLogo = {
@@ -155,7 +155,7 @@ class App extends Component {
       textColor: newTextColor,
       fontSize: newFontSize,
       backgroundColor : newBackgroundColor,
-      borderThickness : newBorderThickness,
+      borderWidth : newBorderWidth,
       borderColor : newBorderColor
     };
 
@@ -244,7 +244,7 @@ class App extends Component {
       text: LogoDefaults.TEXT,
       textColor: LogoDefaults.TEXT_COLOR,
       fontSize: LogoDefaults.FONT_SIZE,
-      borderThickness: LogoDefaults.BORDER_THICKNESS
+      borderWidth: LogoDefaults.BORDER_WIDTH
     }
     return newLogo;
   }
@@ -371,6 +371,7 @@ class App extends Component {
           canUndo={this.canUndo}                          // TRANSACTION CALLBACK
           redoCallback={this.redo}  
           canRedo={this.canRedo} 
+          deleteLogo={this.deleteLogo}
         />;
       default:
         return <div></div>;

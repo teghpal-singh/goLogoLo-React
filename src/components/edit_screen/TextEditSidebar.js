@@ -12,6 +12,7 @@ class TextEditSidebar extends Component {
             fontSize : this.props.logo.fontSize,
             text : this.props.logo.text,
             backgroundColor : this.props.logo.backgroundColor,
+            borderWidth : this.props.logo.borderWidth,
             borderColor : this.props.logo.borderColor,
             error: false,
         }
@@ -42,7 +43,7 @@ class TextEditSidebar extends Component {
 
     handleBorderThicknessChange = (event) => {
         console.log("handleBorderThicknessChangeComplete to " + event.target.value);
-        this.setState({ borderThickness: event.target.value }, this.completeUserEditing);
+        this.setState({ borderWidth: event.target.value }, this.completeUserEditing);
     }
 
     handleBorderColorChange = (event) => {
@@ -54,7 +55,7 @@ class TextEditSidebar extends Component {
         console.log("completeUserEditing");
         console.log("this.state.textColor: " + this.state.textColor);
         console.log(this.state.text);
-        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor, this.state.fontSize, this.state.backgroundColor, this.state.borderThickness, this.state.borderColor);
+        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor, this.state.fontSize, this.state.backgroundColor, this.state.borderWidth, this.state.borderColor);
     }
 
     componentDidUpdate(prevProps) {
@@ -65,7 +66,7 @@ class TextEditSidebar extends Component {
                 fontSize: this.props.logo.fontSize,
                 text: this.props.logo.text,
                 backgroundColor: this.props.logo.backgroundColor,
-                borderThickness: this.props.logo.borderThickness,
+                borderWidth: this.props.logo.borderWidth,
                 borderColor: this.props.logo.borderColor,
             })
         }
@@ -154,7 +155,7 @@ class TextEditSidebar extends Component {
                             <div className="col s8">
                                 <input type="range" min="4" max="144" 
                                     onChange={this.handleBorderThicknessChange}
-                                    value={this.props.logo.borderThickness} />
+                                    value={this.props.logo.borderWidth} />
                             </div>
                         </div>
                         <div className="row">

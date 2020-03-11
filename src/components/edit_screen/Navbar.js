@@ -1,4 +1,5 @@
 import React from 'react'
+import { Modal, Button} from 'react-materialize';
 
 class Navbar extends React.Component {
   constructor() {
@@ -30,7 +31,10 @@ class Navbar extends React.Component {
             goLogoLo
           </div>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li style={ {cursor: "pointer"} }>&#128465;</li>
+            <Modal trigger={<button style={ {cursor: "pointer", fontSize: "30pt"} }>&#128465;</button>}>
+                <h5>Are you sure you want to permanently delete this logo?</h5>
+                <Button type="button" modal="close" className="btn btn-primary" onClick={this.props.deleteLogo.bind(this, this.props.logo.key)}>Yes</Button>
+            </Modal>
           </ul>
         </div>
       </nav>
