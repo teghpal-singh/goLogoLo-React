@@ -8,17 +8,18 @@ class TextEditWorkspace extends Component {
                 color: this.props.logo.textColor,
                 fontSize: this.props.logo.fontSize + "pt",
                 backgroundColor: this.props.logo.backgroundColor,
+                borderStyle: "solid",
                 borderWidth: this.props.logo.borderWidth + "pt",
                 borderColor: this.props.logo.borderColor,
-                borderStyle: "solid",
-                marginTop: "6px"
+                marginTop: "6px",
+                overflow: "auto"
             }
         }
         console.log("border width: " + this.props.logo.borderWidth);
         return (
             <div className="col s8"
                 style={ styles.container }>
-                {this.props.logo.text}
+                {this.props.logo.text.replace(/ /g, '\xa0')}
             </div>
         )
     }

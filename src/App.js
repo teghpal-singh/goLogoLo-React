@@ -24,7 +24,9 @@ export const LogoDefaults = {
   TEXT : "goLogoLo Logo",
   TEXT_COLOR : "#FF0000",
   FONT_SIZE : 24,
-  BORDER_WIDTH: 4
+  BORDER_WIDTH: 0,
+  BACKGROUND_COLOR: "#000000",
+  BORDER_COLOR: "#FF0000"
 }
 
 // App IS THE ROOT REACT COMPONENT
@@ -244,7 +246,9 @@ class App extends Component {
       text: LogoDefaults.TEXT,
       textColor: LogoDefaults.TEXT_COLOR,
       fontSize: LogoDefaults.FONT_SIZE,
-      borderWidth: LogoDefaults.BORDER_WIDTH
+      borderWidth: LogoDefaults.BORDER_WIDTH,
+      backgroundColor: LogoDefaults.BACKGROUND_COLOR,
+      borderColor: LogoDefaults.BORDER_COLOR
     }
     return newLogo;
   }
@@ -315,6 +319,8 @@ class App extends Component {
 
   afterLogoDeleted = () => {
     console.log("App afterLogoDeleted logos: " + this.logosToString(this.state.logos));
+    let logosString = JSON.stringify(this.state.logos);
+    localStorage.setItem("recent_work", logosString);
     // FIRST GO HOME
     this.goToHomeScreen();
   }
