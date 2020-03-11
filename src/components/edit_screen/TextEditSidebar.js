@@ -14,6 +14,7 @@ class TextEditSidebar extends Component {
             backgroundColor : this.props.logo.backgroundColor,
             borderWidth : this.props.logo.borderWidth,
             borderColor : this.props.logo.borderColor,
+            borderRadius : this.props.logo.borderRadius,
             error: false,
         }
     }
@@ -51,11 +52,16 @@ class TextEditSidebar extends Component {
         this.setState({ borderColor: event.target.value }, this.completeUserEditing);
     }
 
+    handleBorderRadiusChange = (event) => {
+        console.log("handleBorderRadiusChange to " + event.target.value);
+        this.setState({ borderRadius: event.target.value }, this.completeUserEditing);
+    }
+
     completeUserEditing = () => {
         console.log("completeUserEditing");
         console.log("this.state.textColor: " + this.state.textColor);
         console.log(this.state.text);
-        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor, this.state.fontSize, this.state.backgroundColor, this.state.borderWidth, this.state.borderColor);
+        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor, this.state.fontSize, this.state.backgroundColor, this.state.borderWidth, this.state.borderColor, this.state.borderRadius);
     }
 
     componentDidUpdate(prevProps) {
@@ -68,6 +74,7 @@ class TextEditSidebar extends Component {
                 backgroundColor: this.props.logo.backgroundColor,
                 borderWidth: this.props.logo.borderWidth,
                 borderColor: this.props.logo.borderColor,
+                borderRadius: this.props.logo.borderRadius
             })
         }
     }
@@ -108,7 +115,7 @@ class TextEditSidebar extends Component {
                     <div className="card-content white-text">
                         <Modal trigger={<button className="waves-effect waves-light btn-small">&#9998;</button>}>
                         <h5>Please input what you want your text for this logo to be:</h5>
-                        <Textarea type='text' onChange={this.changeText}></Textarea>
+                        <Textarea type='text' value={this.state.text} onChange={this.changeText}></Textarea>
                         <Button type="button" modal="close" className="btn btn-primary" onClick={this.updateText}>Submit</Button>
                         </Modal>
                         {this.state.error ? (
@@ -117,7 +124,7 @@ class TextEditSidebar extends Component {
                             </Modal>
                         ) : null}
                         {/*<button className="waves-effect waves-light btn-small">&#9998;</button>*/}
-                        <button className={undoClass} onClick={this.handleUndo}>Undo</button>
+                        <button className={undoClass} onClick={this.handleUndo}>Undo</button>                        
                         <button className={redoClass} onClick={this.handleRedo}>Redo</button>
                     </div>
                 </div>
@@ -136,7 +143,7 @@ class TextEditSidebar extends Component {
                         <div className="row">
                             <div className="col s4">Font Size:</div>
                             <div className="col s8">
-                                <Range type="range" min="4" max="100" 
+                                <Range type="range" min="5" max="100" 
                                     onChange={this.handleFontSizeChange}
                                     value={this.props.logo.fontSize} />
                             </div>
@@ -153,7 +160,7 @@ class TextEditSidebar extends Component {
                         <div className="row">
                             <div className="col s4">Border Thickness:</div>
                             <div className="col s8">
-                                <Range type="range" min="0" max="144" 
+                                <Range type="range" min="0" max="100" 
                                     onChange={this.handleBorderThicknessChange}
                                     value={this.props.logo.borderWidth} />
                             </div>
@@ -165,6 +172,14 @@ class TextEditSidebar extends Component {
                                         onChange={this.handleBorderColorChange}
                                         value={this.props.logo.borderColor}
                                 />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Border Radius:</div>
+                            <div className="col s8">
+                                <Range type="range" min="0" max="100" 
+                                    onChange={this.handleBorderRadiusChange}
+                                    value={this.props.logo.borderRadius} />
                             </div>
                         </div>
 
