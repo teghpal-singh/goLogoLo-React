@@ -7,17 +7,22 @@ class TextEditWorkspace extends Component {
             container: {
                 color: this.props.logo.textColor,
                 fontSize: this.props.logo.fontSize + "pt",
+                fontFamily: "Arial",
                 backgroundColor: this.props.logo.backgroundColor,
                 borderStyle: "solid",
                 borderWidth: this.props.logo.borderWidth + "pt",
                 borderColor: this.props.logo.borderColor,
                 borderRadius: this.props.logo.borderRadius + "pt",
+                padding: this.props.logo.padding + "pt",
+                margin: this.props.logo.margin + "pt",
                 marginTop: "6px",
                 overflow: "auto",
                 position: "absolute",
                 width: "auto",
                 left: "39%",
-                maxWidth: "525pt"
+                top: "10%",
+                maxWidth: "525pt",
+                minWidth: "max-content"
             }
         }
         console.log("border width: " + this.props.logo.borderWidth);

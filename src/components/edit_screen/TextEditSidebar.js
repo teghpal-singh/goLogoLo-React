@@ -15,6 +15,8 @@ class TextEditSidebar extends Component {
             borderWidth : this.props.logo.borderWidth,
             borderColor : this.props.logo.borderColor,
             borderRadius : this.props.logo.borderRadius,
+            padding : this.props.logo.padding,
+            margin : this.props.logo.margin,
             error: false,
         }
     }
@@ -57,11 +59,21 @@ class TextEditSidebar extends Component {
         this.setState({ borderRadius: event.target.value }, this.completeUserEditing);
     }
 
+    handlePaddingChange = (event) => {
+        console.log("handlePaddingChange to " + event.target.value);
+        this.setState({ padding: event.target.value }, this.completeUserEditing);
+    }
+
+    handleMarginChange = (event) => {
+        console.log("handleMarginChange to " + event.target.value);
+        this.setState({ margin: event.target.value }, this.completeUserEditing);
+    }
+
     completeUserEditing = () => {
         console.log("completeUserEditing");
         console.log("this.state.textColor: " + this.state.textColor);
         console.log(this.state.text);
-        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor, this.state.fontSize, this.state.backgroundColor, this.state.borderWidth, this.state.borderColor, this.state.borderRadius);
+        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor, this.state.fontSize, this.state.backgroundColor, this.state.borderWidth, this.state.borderColor, this.state.borderRadius, this.state.padding, this.state.margin);
     }
 
     componentDidUpdate(prevProps) {
@@ -74,7 +86,9 @@ class TextEditSidebar extends Component {
                 backgroundColor: this.props.logo.backgroundColor,
                 borderWidth: this.props.logo.borderWidth,
                 borderColor: this.props.logo.borderColor,
-                borderRadius: this.props.logo.borderRadius
+                borderRadius: this.props.logo.borderRadius,
+                padding: this.props.logo.padding,
+                margin: this.props.logo.margin
             })
         }
     }
@@ -114,8 +128,8 @@ class TextEditSidebar extends Component {
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
                         <Modal trigger={<button className="waves-effect waves-light btn-small">&#9998;</button>}>
-                        <h5>Please input what you want your text for this logo to be:</h5>
-                        <Textarea type='text' value={this.state.text} onChange={this.changeText}></Textarea>
+                        <h5>Please type your desired text for this logo:</h5>
+                        <Textarea type='text' style={{fontSize: 12, paddingBottom: 12}} value={this.state.text} onChange={this.changeText}></Textarea>
                         <Button type="button" modal="close" className="btn btn-primary" onClick={this.updateText}>Submit</Button>
                         </Modal>
                         {this.state.error ? (
@@ -126,11 +140,17 @@ class TextEditSidebar extends Component {
                         {/*<button className="waves-effect waves-light btn-small">&#9998;</button>*/}
                         <button className={undoClass} onClick={this.handleUndo}>Undo</button>                        
                         <button className={redoClass} onClick={this.handleRedo}>Redo</button>
+                        <div id="nav-mobile" className="right hide-on-med-and-down">
+                            <Modal trigger={<button style={ {cursor: "pointer", fontSize: "30pt", position: "relative", bottom: "5pt"} }>&#128465;</button>}>
+                                <h5>Are you sure you want to permanently delete this logo?</h5>
+                                <Button type="button" modal="close" className="btn btn-primary" onClick={this.props.deleteLogo.bind(this, this.props.logo.key)}>Yes</Button>
+                            </Modal>
+                        </div>
                     </div>
                 </div>
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
-                        <span className="card-title">Text</span>
+                        <span className="card-title" style={{textAlign: "center"}}>Logo Properties</span>
                         <div className="row">
                             <div className="col s4">Color:</div>
                             <div className="col s8">
@@ -182,7 +202,22 @@ class TextEditSidebar extends Component {
                                     value={this.props.logo.borderRadius} />
                             </div>
                         </div>
-
+                        <div className="row">
+                            <div className="col s4">Padding:</div>
+                            <div className="col s8">
+                                <Range type="range" min="0" max="100" 
+                                    onChange={this.handlePaddingChange}
+                                    value={this.props.logo.padding} />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Margin:</div>
+                            <div className="col s8">
+                                <Range type="range" min="0" max="100" 
+                                    onChange={this.handleMarginChange}
+                                    value={this.props.logo.margin} />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -11,9 +11,6 @@ export class EditScreen extends Component {
         // DISPLAY WHERE WE ARE
         console.log("\tEditScreen constructor");
 
-        this.state = {  
-            deleteModalVisible: false
-        }
     }
 
     keydownHandlerCtrlZ = (e) => {
@@ -52,6 +49,7 @@ export class EditScreen extends Component {
                 <div className="row">
                     <TextEditSidebar
                         logo={this.props.logo}
+                        deleteLogo={this.props.deleteLogo}
                         changeLogoCallback={this.props.changeLogoCallback}
                         undoCallback={this.props.undoCallback}                                          
                         canUndo={this.props.canUndo}    
