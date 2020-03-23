@@ -29,8 +29,8 @@ class HomeScreen extends Component {
 
         return (
             <div className="container row">
-                <div className="col s4" style={{ color: "white" }}>
-                    <h3>Recent Work</h3>
+                <div className="col s4" style={{ color: "white", textAlign: "center" }}>
+                    <h3>YOUR LOGOS</h3>
                     <LogoLinks
                         logos={this.props.logos}                
                         goToLogoCallback={this.props.goToLogoCallback}

@@ -19,8 +19,9 @@ class TextEditWorkspace extends Component {
                 overflow: "auto",
                 position: "relative",
                 width: "max-content",
-                maxWidth: "525pt",
-                minWidth: "max-content"
+                maxWidth: "min-content",
+                minWidth: "min-content",
+                textAlign: "center"
             }
         }
         console.log("border width: " + this.props.logo.borderWidth);

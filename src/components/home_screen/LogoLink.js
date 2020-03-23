@@ -29,7 +29,8 @@ export class LogoLink extends Component {
         return (
             <div 
                 className='home_logo_link'                
-                style={ {cursor: "pointer"} }
+                style={ {cursor: "pointer", backgroundColor: "#26a69a", color: "white", borderStyle: "solid", borderColor: "#546e7a",
+                textAlign: "center"} }
                 onClick={this.handleGoToLogo}
             >
                 {this.props.logo.text}<br />

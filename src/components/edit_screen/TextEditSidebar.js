@@ -150,7 +150,7 @@ class TextEditSidebar extends Component {
                 </div>
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
-                        <span className="card-title" style={{textAlign: "center"}}>Logo Properties</span>
+                        <span className="card-title" style={{textAlign: "center", position: "relative", bottom: "10pt"}}>CUSTOMIZE</span>
                         <div className="row">
                             <div className="col s4">Color:</div>
                             <div className="col s8">
