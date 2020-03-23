@@ -30,10 +30,10 @@ export class LogoLink extends Component {
             <div 
                 className='home_logo_link'                
                 style={ {cursor: "pointer", backgroundColor: "#26a69a", color: "white", borderStyle: "solid", borderColor: "#546e7a",
-                textAlign: "center"} }
+                textAlign: "center", textOverflow: "ellipsis", overflow: "hidden"} }
                 onClick={this.handleGoToLogo}
             >
-                {this.props.logo.text}<br />
+                {this.props.logo.text.replace(/ /g, '\xa0')}<br />
             </div>
         )
     }
