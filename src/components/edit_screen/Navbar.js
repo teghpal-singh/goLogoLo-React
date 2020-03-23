@@ -23,9 +23,9 @@ class Navbar extends React.Component {
   render() {
     return (
       <nav>
-        <div className="nav-wrapper"  style={ {textAlign: "center", backgroundColor: "#546e7a"} }>
+        <div className="nav-wrapper"  style={ {textAlign: "center", backgroundColor: "#26a69a"} }>
           <div  className='brand-logo' 
-                style={ {cursor: "pointer", display: "inline-block", position: "relative"} }
+                style={ {cursor: "pointer", display: "inline-block", position: "relative", fontFamily: "Arial"} }
                 onClick={this.handleGoHome}>
             goLogoLo Home
           </div>

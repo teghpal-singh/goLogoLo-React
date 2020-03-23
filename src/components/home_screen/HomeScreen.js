@@ -28,7 +28,7 @@ class HomeScreen extends Component {
 
         return (
             <div className="container row">
-                <div className="col s4">
+                <div className="col s4" style={{ color: "white" }}>
                     <h3>Recent Work</h3>
                     <LogoLinks
                         logos={this.props.logos}                
@@ -36,11 +36,10 @@ class HomeScreen extends Component {
                     />
                 </div>
                 <div className="col s8">
-                    <div id="home_banner_container">
-                        @todo<br />
-                        List Maker
+                    <div id="home_banner_container"><div/>
+                        goLogoLo Maker
                     </div>
-                    <div>
+                    <div style={{ textAlign: "center" }}>
                         <button
                             style={{ cursor: "pointer" }}
                             onClick={this.handleAddNewLogo}>

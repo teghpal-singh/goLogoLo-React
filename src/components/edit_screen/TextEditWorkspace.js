@@ -20,7 +20,6 @@ class TextEditWorkspace extends Component {
                 position: "absolute",
                 width: "auto",
                 left: "39%",
-                top: "10%",
                 maxWidth: "525pt",
                 minWidth: "max-content"
             }
