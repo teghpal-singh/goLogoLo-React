@@ -1,6 +1,7 @@
 // IMPORT ALL THE THINGS NEEDED FROM OTHER JAVASCRIPT SOURCE FILES
 import React, { Component } from 'react'
 import LogoLinks from './LogoLinks'
+import { Button } from 'react-materialize';
 
 class HomeScreen extends Component {
     constructor(props) {
@@ -39,12 +40,13 @@ class HomeScreen extends Component {
                     <div id="home_banner_container"><div/>
                         goLogoLo Maker
                     </div>
+                    <br></br>
                     <div style={{ textAlign: "center" }}>
-                        <button
+                        <Button
                             style={{ cursor: "pointer" }}
                             onClick={this.handleAddNewLogo}>
                             Create a New Logo
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>

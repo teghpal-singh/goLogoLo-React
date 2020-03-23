@@ -16,12 +16,14 @@ export class EditScreen extends Component {
     keydownHandlerCtrlZ = (e) => {
         if(e.keyCode === 90 && e.ctrlKey) {
             this.props.undoCallback();
+            this.forceUpdate();
         } 
       }
 
       keydownHandlerCtrlY = (e) => {
         if(e.keyCode === 89 && e.ctrlKey) {
             this.props.redoCallback();
+            this.forceUpdate();
         } 
       }
 

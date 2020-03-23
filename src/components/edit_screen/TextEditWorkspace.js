@@ -17,9 +17,8 @@ class TextEditWorkspace extends Component {
                 margin: this.props.logo.margin + "pt",
                 marginTop: "6px",
                 overflow: "auto",
-                position: "absolute",
-                width: "auto",
-                left: "39%",
+                position: "relative",
+                width: "max-content",
                 maxWidth: "525pt",
                 minWidth: "max-content"
             }
